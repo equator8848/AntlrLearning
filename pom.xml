@@ -13,7 +13,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <antlr.version>4.9.1</antlr.version>
+        <!--ANTLR 4 从4.10 版本后最低要求的JDK版本升到了Java 11，所以如果在Java 8上运行ANTLR4只能使用4.9.3以下的版本-->
+        <antlr4.version>4.9.3</antlr4.version>
         <lombok.version>1.18.10</lombok.version>
     </properties>
 
@@ -21,7 +22,7 @@
         <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
-            <version>${antlr.version}</version>
+            <version>${antlr4.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -35,22 +36,30 @@
         <plugins>
             <plugin>
                 <groupId>org.antlr</groupId>
-                <artifactId>antlr4</artifactId>
-                <version>${antlr.version}</version>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>${antlr4.version}</version>
+                <configuration>
+                    <sourceDirectory>src/main/resources/grammar</sourceDirectory>
+                    <outputDirectory>
+                        ${project.build.directory}/generated-sources/src/main/java/com/equator/antlr/gen
+                    </outputDirectory>
+                    <listener>true</listener>
+                    <visitor>true</visitor>
+                    <treatWarningsAsErrors>true</treatWarningsAsErrors>
+                    <arguments>
+                        <argument>-package</argument>
+                        <argument>com.equator.antlr.gen</argument>
+                    </arguments>
+                </configuration>
                 <executions>
                     <execution>
                         <id>antlr</id>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>antlr4</goal>
                         </goals>
-                        <phase>none</phase>
                     </execution>
                 </executions>
-                <configuration>
-                    <outputDirectory>src/test/java</outputDirectory>
-                    <listener>true</listener>
-                    <treatWarningsAsErrors>true</treatWarningsAsErrors>
-                </configuration>
             </plugin>
         </plugins>
     </build>

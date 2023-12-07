@@ -1,7 +1,7 @@
 package com.equator.antlr.grammar.json;
 
-import grammar.json.JsonLexer;
-import grammar.json.JsonParser;
+import com.equator.antlr.gen.JsonLexer;
+import com.equator.antlr.gen.JsonParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 

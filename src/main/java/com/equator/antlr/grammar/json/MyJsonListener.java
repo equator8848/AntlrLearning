@@ -1,7 +1,7 @@
 package com.equator.antlr.grammar.json;
 
-import grammar.json.JsonListener;
-import grammar.json.JsonParser;
+import com.equator.antlr.gen.JsonListener;
+import com.equator.antlr.gen.JsonParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;

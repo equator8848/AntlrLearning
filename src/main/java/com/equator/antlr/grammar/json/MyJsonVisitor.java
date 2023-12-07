@@ -1,7 +1,7 @@
 package com.equator.antlr.grammar.json;
 
-import grammar.json.JsonParser;
-import grammar.json.JsonVisitor;
+import com.equator.antlr.gen.JsonParser;
+import com.equator.antlr.gen.JsonVisitor;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 public class MyJsonVisitor<T> extends AbstractParseTreeVisitor<T> implements JsonVisitor<T> {
